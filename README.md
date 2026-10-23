@@ -1,72 +1,59 @@
-# DARKJUAN — Educational Hacker Community Telegram Bot
+<p align="center">
+  <img src="docs/banner.png" alt="DARKJUAN Bot" width="100%">
+</p>
 
-Calm, authoritative guide for responsible security learning. Focused on group moderation, onboarding, and educational content about offensive/defensive techniques with clear legal disclaimers.
+# DARKJUAN Bot
+
+**Telegram bot for an educational security-learning community: moderation, onboarding, and learning-hub commands.**
+
+[![License: All Rights Reserved](https://img.shields.io/badge/license-all%20rights%20reserved-lightgrey)](#license)
+![Python](https://img.shields.io/badge/Python-3776AB&logo=python&logoColor=white)
+![Telegram](https://img.shields.io/badge/Telegram-26A5E4&logo=telegram&logoColor=white)
+
+Python bot using python-telegram-bot, SQLAlchemy/aiosqlite, and structlog. Focused on group moderation and educational content with legal disclaimers. **Security: `.env.example` currently contains what looks like a real Telegram bot token — rotate it and replace the example with a placeholder.**
 
 ## Features
-- Onboarding with /start, /rules, /agree; roles: guest/member/verified/mod/admin.
-- Safety policies for harmful asks; link checks with suspicious TLD warnings.
-- Rate limiting + spam detection (warn + optional escalation).
-- Learning hub: /resources, /lab, /ctf, /disclosure, /glossary, /attacks, /tools.
-- Reporting flow to moderators with audit logging (no message bodies stored).
-- /redact helper to mask secrets before sharing.
 
-## Requirements
+- Onboarding (`/start`, `/rules`, `/agree`) and roles
+- Safety policies, link checks, rate limiting / spam detection
+- Learning hub commands (`/resources`, `/lab`, `/ctf`, `/disclosure`, `/glossary`, `/attacks`, `/tools`)
+- `/report` to mods with audit logging (no message bodies stored)
+- `/redact` helper to mask secrets before sharing
+
+## Tech stack
+
 - Python 3.11+
-- Telegram bot token
+- python-telegram-bot 20.x
+- SQLAlchemy + aiosqlite
+- structlog
+- pytest
 
-## Setup
+## How to run
+
 ```bash
-cd darkjuan-bot
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env
-```
-Fill `.env` with your values.
-
-## Running
-```bash
-source .venv/bin/activate
+cp .env.example .env   # put placeholders only; never commit real tokens
 python -m bot.main
 ```
 
-## Environment Variables
-- `TELEGRAM_BOT_TOKEN`: Bot token from BotFather.
-- `ADMIN_USER_IDS`: Comma-separated Telegram numeric IDs.
-- `MOD_USER_IDS`: Comma-separated Telegram numeric IDs.
-- `DATABASE_URL`: e.g., `sqlite+aiosqlite:///darkjuan.db`.
-- `LOG_LEVEL`: INFO/DEBUG/WARNING.
+Tests: `pytest`.
 
-## Deployment
-- Default: long polling.
-- For webhooks, set a public HTTPS endpoint and disable polling in code (not included by default).
-- If using group moderation, disable privacy mode in BotFather so non-command messages are delivered.
-- Grant admin rights for delete/mute operations; otherwise bot will warn and escalate.
+## Environment variables
 
-## Testing
-```bash
-source .venv/bin/activate
-pytest
-```
+Names only. Never commit values.
 
-## Verification Checklist (Telegram)
-- Add bot to a group; disable privacy mode if you need message moderation.
-- `/start` shows mission + educational disclaimer; `/help` lists commands.
-- `/rules` displays Code of Conduct; `/agree` marks member; `/status` reports health.
-- Send repeated rapid messages -> warns for rate limit/spam.
-- Send suspicious links (e.g., tinyurl, .ru) -> warning logged.
-- Issue unsafe ask (“how to hack my neighbor”) -> refusal + safe alternatives.
-- `/resources`, `/lab`, `/ctf`, `/disclosure`, `/glossary`, `/attacks`, `/tools` respond with educational content.
-- `/report something concerning` forwards to mods and logs.
-- `/redact sk_test_123` masks secrets.
+- `TELEGRAM_BOT_TOKEN`
+- `ADMIN_USER_IDS`
+- `MOD_USER_IDS`
+- `DATABASE_URL`
+- `LOG_LEVEL`
 
-## Common Failure Modes
-- Missing `TELEGRAM_BOT_TOKEN` -> startup failure.
-- Privacy mode on -> bot does not see non-commands; disable in BotFather.
-- Bot lacks admin rights -> cannot delete/mute; will warn but continue.
-- Database path unwritable -> check `DATABASE_URL`.
+## Status
 
-## Security Notes
-- No secrets are logged.
-- Messages are not stored; only hashes/snippets and metadata in moderation_events.
-- Input is validated/sanitized; policies gate unsafe content.
+Public. Educational community bot. Rotate the token currently sitting in `.env.example`.
+
+## License
+
+All rights reserved.
