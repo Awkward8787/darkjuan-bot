@@ -57,3 +57,20 @@ Public. Educational community bot. Rotate the token currently sitting in `.env.e
 ## License
 
 All rights reserved.
+
+## Download
+
+Source archives are published on the [Releases page](https://github.com/Awkward8787/darkjuan-bot/releases); the latest release carries `darkjuan-bot-v0.1.0.zip`. The archive excludes environment and git files.
+
+### Install & run
+```bash
+unzip darkjuan-bot-v0.1.0.zip
+cd darkjuan-bot
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+# Create a .env with your own values (see "Environment Variables" above):
+# TELEGRAM_BOT_TOKEN, ADMIN_USER_IDS, MOD_USER_IDS, DATABASE_URL, LOG_LEVEL
+python -m bot.main
+```
+Requires Python 3.11+ and a Telegram bot token.
