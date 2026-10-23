@@ -1,0 +1,4 @@
+# Local secrets. .env.example is placeholders only and stays tracked.
+.env
+.env.*
+!.env.example

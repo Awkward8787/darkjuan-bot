@@ -10,7 +10,7 @@
 ![Python](https://img.shields.io/badge/Python-3776AB&logo=python&logoColor=white)
 ![Telegram](https://img.shields.io/badge/Telegram-26A5E4&logo=telegram&logoColor=white)
 
-Python bot using python-telegram-bot, SQLAlchemy/aiosqlite, and structlog. Focused on group moderation and educational content with legal disclaimers. **Security: `.env.example` currently contains what looks like a real Telegram bot token — rotate it and replace the example with a placeholder.**
+Python bot using python-telegram-bot, SQLAlchemy/aiosqlite, and structlog. Focused on group moderation and educational content with legal disclaimers. **Security: the bot reads secrets from the environment. `.env.example` contains placeholders only. A bot token was previously committed in that file and is still in git history — revoke it in @BotFather before any history rewrite.**
 
 ## Features
 
@@ -34,7 +34,7 @@ Python bot using python-telegram-bot, SQLAlchemy/aiosqlite, and structlog. Focus
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env   # put placeholders only; never commit real tokens
+cp .env.example .env   # then set real values in .env only; never commit that file
 python -m bot.main
 ```
 
@@ -52,7 +52,7 @@ Names only. Never commit values.
 
 ## Status
 
-Public. Educational community bot. Rotate the token currently sitting in `.env.example`.
+Public. Educational community bot. `.env.example` uses placeholders. Rotate the bot token that was committed earlier; it remains in git history until a purge, and a purge does not revoke it.
 
 ## License
 
